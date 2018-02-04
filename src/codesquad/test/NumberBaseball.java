@@ -80,36 +80,27 @@ public static void main(String[] args) {
 	
 	// *** Define strike ***
 	public int checkStrike(List<String> input, List<String> answer) {
-		int digit1 = 0, digit2 = 0, digit3 = 0;
+		int strikeCount = 0;
 		
-		if (Objects.equals(input.get(0), answer.get(0))) {
-			digit1 = 1;
+		for (int i = 0; i < 3; i++) {
+			if (Objects.equals(input.get(i), answer.get(i))) {
+				strikeCount ++;
+			}
 		}
-		if (Objects.equals(input.get(1), answer.get(1))) {
-			digit2 = 1; 
-		}
-		if (Objects.equals(input.get(2), answer.get(2))) {
-			digit3 = 1;
-		}
-		int strikeCount = digit1 + digit2 + digit3;
+		
 		return strikeCount;
 	}
 	
 	// *** Define ball ***
 	public int checkBall(List<String> input, List<String> answer) {
-		String first = input.get(0), second = input.get(1), third = input.get(2);
-		int digit1 = 0, digit2 = 0, digit3 = 0;
+		int ballCount = 0;
 		
-		if (!Objects.equals(first, answer.get(0)) && answer.contains(first)) {
-			digit1 = 1;
+		for (int i = 0; i < 3; i++) {
+			if (!Objects.equals(input.get(i), answer.get(i)) && answer.contains(i)) {
+				ballCount ++;
+			}
 		}
-		if (!Objects.equals(second, answer.get(1)) && answer.contains(second)) {
-			digit2 = 1;
-		}
-		if (!Objects.equals(third, answer.get(2)) && answer.contains(third)) {
-			digit3 = 1;
-		}
-		int ballCount = digit1 + digit2 + digit3;
+		
 		return ballCount; 
 	}
 
