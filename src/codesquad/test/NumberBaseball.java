@@ -70,10 +70,7 @@ public static void main(String[] args) {
 
 	//*** Check for illegal user input ***
 	public boolean checkIllegalInput(List<String> input) {
-		//input is not 3 digits
-		if (input.size() != 3) {
-			return true;
-		}
+		
 		//input contains characters that is not an integer
 		for (String i : input) {
 			try {
@@ -83,12 +80,8 @@ public static void main(String[] args) {
 				return true;
 			}
 		}
-		//input has repeating number
-		if (Objects.equals(input.get(0),input.get(1)) || Objects.equals(input.get(0),input.get(2)) || Objects.equals(input.get(1),input.get(2))) {
-			return true;
-		}
-		//input contains  0
-		if (input.contains("0")) {
+		// input is not 3 digits // input contains 0 // input has repeating number 
+		if (input.size() != 3 || input.contains("0") || Objects.equals(input.get(0),input.get(1)) || Objects.equals(input.get(0),input.get(2)) || Objects.equals(input.get(1),input.get(2))) {
 			return true;
 		}
 
