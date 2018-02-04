@@ -69,10 +69,7 @@ public static void main(String[] args) {
 	
 	//*** Check for repeating numbers and zeroes ***
 	public boolean checkIllegalInput(List<String> input) {
-		if (Objects.equals(input.get(0),input.get(1)) || Objects.equals(input.get(0),input.get(2)) || Objects.equals(input.get(1),input.get(2))) {
-			return true;
-		}
-		if (input.contains("0")) {
+		if (Objects.equals(input.get(0),input.get(1)) || Objects.equals(input.get(0),input.get(2)) || Objects.equals(input.get(1),input.get(2)) || input.contains("0")) {
 			return true;
 		}
 		return false;
