@@ -63,15 +63,22 @@ public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("1~9 사이의 수로 된 세자리 숫자를 입력해주세요. (중복불가 ex.122) :");
 		String s = scan.next();
-		input = new ArrayList<>(Arrays.asList(s.split("")));	
+		input = new ArrayList<>(Arrays.asList(s.split("")));
 		return input;
 	}
 	
 	//*** Check for repeating numbers and zeroes ***
 	public boolean checkIllegalInput(List<String> input) {
-		if (Objects.equals(input.get(0),input.get(1)) || Objects.equals(input.get(0),input.get(2)) || Objects.equals(input.get(1),input.get(2)) || input.contains("0")) {
+		//input has repeating number
+		if (Objects.equals(input.get(0),input.get(1)) || Objects.equals(input.get(0),input.get(2)) || Objects.equals(input.get(1),input.get(2))) {
 			return true;
 		}
+		//input contains non-integer or 0
+		if (input.contains("0")) {
+			return true;
+		}
+
+		
 		return false;
 	}	
 	
@@ -93,7 +100,7 @@ public static void main(String[] args) {
 		int ballCount = 0;
 		
 		for (int i = 0; i < 3; i++) {
-			if (!Objects.equals(input.get(i), answer.get(i)) && answer.contains(i)) {
+			if (!Objects.equals(input.get(i), answer.get(i)) && answer.contains(input.get(i))) {
 				ballCount ++;
 			}
 		}
