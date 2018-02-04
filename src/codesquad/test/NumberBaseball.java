@@ -22,9 +22,9 @@ public static void main(String[] args) {
 			
 			input = game.generateInput();
 				
-			//check input for repeating numbers
-			boolean repeat = game.checkIllegalInput(input);
-			if (repeat) {
+			//check input for illegal input
+			boolean illegal = game.checkIllegalInput(input);
+			if (illegal) {
 				System.out.println("입력값 오류입니다.");
 				continue;
 			}
@@ -59,26 +59,39 @@ public static void main(String[] args) {
 
 	//*** Generate user input prompt ***
 	public List<String> generateInput(){
-		List<String> input = null;
+
 		Scanner scan = new Scanner(System.in);
 		System.out.print("1~9 사이의 수로 된 세자리 숫자를 입력해주세요. (중복불가 ex.122) :");
 		String s = scan.next();
-		input = new ArrayList<>(Arrays.asList(s.split("")));
+		List<String> input = new ArrayList<>(Arrays.asList(s.split("")));	
+		
 		return input;
 	}
-	
-	//*** Check for repeating numbers and zeroes ***
+
+	//*** Check for illegal user input ***
 	public boolean checkIllegalInput(List<String> input) {
+		//input is not 3 digits
+		if (input.size() != 3) {
+			return true;
+		}
+		//input contains characters that is not an integer
+		for (String i : input) {
+			try {
+				Integer.parseInt(i);
+			}
+			catch (Exception e){
+				return true;
+			}
+		}
 		//input has repeating number
 		if (Objects.equals(input.get(0),input.get(1)) || Objects.equals(input.get(0),input.get(2)) || Objects.equals(input.get(1),input.get(2))) {
 			return true;
 		}
-		//input contains non-integer or 0
+		//input contains  0
 		if (input.contains("0")) {
 			return true;
 		}
 
-		
 		return false;
 	}	
 	
